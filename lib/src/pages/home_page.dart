@@ -1,7 +1,4 @@
 import 'package:chat_firebase/src/widgets/contacts_widget.dart';
-import 'package:chat_firebase/src/widgets/home_app_bar_widget.dart';
-import 'package:chat_firebase/src/widgets/status_card_widgets.dart';
-import 'package:chat_firebase/src/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
