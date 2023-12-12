@@ -16,16 +16,26 @@ class SearchFilterWidget extends StatefulWidget {
 
 class _SearchFilterWidgetState extends State<SearchFilterWidget> {
   final textEC = TextEditingController();
+  final focusNode = FocusNode();
   bool showTextField = false;
 
   void toggleShow() {
     if (showTextField && textEC.text.isNotEmpty) {
-      widget.onSearch(textEC.text);
+      return widget.onSearch(textEC.text);
     }
 
     setState(() {
       showTextField = !showTextField;
     });
+
+    if (showTextField) focusNode.requestFocus();
+  }
+
+  void clear() {
+    textEC.clear();
+    toggleShow();
+
+    FocusScope.of(context).requestFocus();
   }
 
   @override
@@ -37,17 +47,23 @@ class _SearchFilterWidgetState extends State<SearchFilterWidget> {
           icon: const Icon(Icons.search),
           onPressed: toggleShow,
         ),
+        const SizedBox(height: 8),
         if (!showTextField)
           widget.child
         else
           Expanded(
             child: TextField(
               controller: textEC,
+              focusNode: focusNode,
               textAlignVertical: TextAlignVertical.center,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
                 hintText: ' Pesquisar...',
-                contentPadding: EdgeInsets.all(8)
+                contentPadding: const EdgeInsets.all(8),
+                suffixIcon: InkWell(
+                  onTap: clear,
+                  child: const Icon(Icons.close),
+                ),
               ),
             ),
           ),
