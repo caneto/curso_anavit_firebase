@@ -1,4 +1,4 @@
-import 'package:chat_firebase/src/widgets/status_card_widgets.dart';
+import 'package:chat_firebase/src/pages/home/widgets/status_card_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ContactsWidget extends StatelessWidget {

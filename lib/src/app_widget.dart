@@ -1,4 +1,5 @@
-import 'package:chat_firebase/src/pages/home_page.dart';
+import 'package:chat_firebase/src/pages/chat/chat_page.dart';
+import 'package:chat_firebase/src/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class AppWidget extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: const HomePage(),
+        home: const ChatPage(),
        );
   }
 }

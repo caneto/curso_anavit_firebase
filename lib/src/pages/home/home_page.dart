@@ -1,11 +1,9 @@
-import 'package:chat_firebase/src/widgets/chat_card_widget.dart';
-import 'package:chat_firebase/src/widgets/chat_section_widget.dart';
-import 'package:chat_firebase/src/widgets/contacts_widget.dart';
-import 'package:chat_firebase/src/widgets/filter_bar_widget.dart';
-import 'package:chat_firebase/src/widgets/filter_card_widget.dart';
-import 'package:chat_firebase/src/widgets/home_app_bar_widget.dart';
-import 'package:chat_firebase/src/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/chat_section_widget.dart';
+import 'widgets/contacts_widget.dart';
+import 'widgets/filter_bar_widget.dart';
+import 'widgets/home_app_bar_widget.dart';
 
 void logout() {}
 
@@ -14,7 +12,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return Scaffold(
       backgroundColor: Colors.deepPurple.shade300,
