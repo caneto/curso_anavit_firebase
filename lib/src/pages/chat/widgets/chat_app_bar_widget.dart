@@ -28,7 +28,7 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 decoration: const BoxDecoration(
                     color: Colors.green, shape: BoxShape.circle),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(width: 8),
               Text(
                 'OnLine',
                 style: theme.primaryTextTheme.bodyMedium,
