@@ -11,14 +11,17 @@ class ChatPage extends StatelessWidget {
 
     return const Scaffold(
       appBar: ChatAppBarWidget(),
-      body: Column(
-        children: [
-          MessageWidget.myMessage(),
-          MessageWidget.otherMessage(
-            userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
-            isOnline: true,
-          ),
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            MessageWidget.myMessage(sendedAt: '10:32',),
+            MessageWidget.otherMessage(
+              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
+              isOnline: true, sendedAt: '10:35',
+            ),
+          ],
+        ),
       ),
     );
   }

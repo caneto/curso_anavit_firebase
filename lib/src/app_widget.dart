@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
        return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.blue,
+          primaryColor: Colors.purple.shade300 ,
         ),
         home: const ChatPage(),
        );

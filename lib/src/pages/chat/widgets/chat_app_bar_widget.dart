@@ -11,7 +11,7 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     final theme = Theme.of(context);
 
     return AppBar(
-      backgroundColor: theme.primaryColor,
+      backgroundColor: Colors.blue,
       title: Column(
         children: [
           Text(
