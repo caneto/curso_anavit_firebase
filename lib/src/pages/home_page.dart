@@ -1,3 +1,5 @@
+import 'package:chat_firebase/src/widgets/chat_card_widget.dart';
+import 'package:chat_firebase/src/widgets/chat_section_widget.dart';
 import 'package:chat_firebase/src/widgets/contacts_widget.dart';
 import 'package:chat_firebase/src/widgets/filter_bar_widget.dart';
 import 'package:chat_firebase/src/widgets/filter_card_widget.dart';
@@ -12,7 +14,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -49,47 +50,22 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     const FilterBarWidget(),
-                    Column(
-                      children: [
-                        const Text('Pinned Message(2)'),
-                        Row(
-                          children: [
-                            UserImageWidget(
-                              radius: size.width * 0.1,
-                              imageUrl:
-                                  'https://avatars.githubusercontent.com/u/2157300?v=4',
-                              isOnline: true,
-                            ),
-                            const SizedBox(width: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Carlos Alberto',
-                                  style: theme.textTheme.titleLarge,
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  'Contact',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('11:00 Am'),
-                                const SizedBox(height: 8),
-                                Icon(
-                                  Icons.check,
-                                  color: theme.primaryColor,
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    )
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: ListView(
+                        children: const [
+                          ChatSectionWidget(label: 'Pinned Message(2)'),
+                          SizedBox(height: 20),
+                          ChatSectionWidget(label: 'All Message(7)'),
+                        ],
+                      ),
+                    ),
+                    //Expanded(
+                    //  child: Column(
+                    //    children: [
+                    //    ],
+                    //  )
+                    //)
                   ],
                 ),
               ),
