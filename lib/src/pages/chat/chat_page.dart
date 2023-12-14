@@ -9,17 +9,71 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return const Scaffold(
-      appBar: ChatAppBarWidget(),
+    return Scaffold(
+      appBar: const ChatAppBarWidget(),
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            MessageWidget.myMessage(sendedAt: '10:32',),
+        padding: const EdgeInsets.all(16),
+        child: ListView(
+          children: const [
+            MessageWidget.myMessage(
+              sendedAt: '10:32',
+              content:
+                  'Texto de Teste um ................. ............. .................',
+            ),
             MessageWidget.otherMessage(
               userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
-              isOnline: true, sendedAt: '10:35',
+              isOnline: true,
+              sendedAt: '10:35',
+              content:
+                  'Texto de Teste dois......... ............. .............. .............',
             ),
+            MessageWidget.myMessage(
+              imagesUrl: [
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+              ],
+              sendedAt: '10:32',
+              content:
+                  'Texto de Teste um ................. ............. .................',
+            ),
+            MessageWidget.otherMessage(
+              imagesUrl: [
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+              ],
+              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
+              isOnline: true,
+              sendedAt: '10:35',
+              content:
+                  'Texto de Teste dois......... ............. .............. .............',
+            ),
+            MessageWidget.myMessage(
+              imagesUrl: [
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+              ],
+              sendedAt: '10:32',
+              content:
+                  'Texto de Teste um ................. ............. .................',
+            ),
+            MessageWidget.otherMessage(
+              imagesUrl: [
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+                'https://avatars.githubusercontent.com/u/2157300?v=4',
+              ],
+              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
+              isOnline: true,
+              sendedAt: '10:35',
+              content:
+                  'Texto de Teste dois......... ............. .............. .............',
+            )
           ],
         ),
       ),

@@ -1,9 +1,12 @@
+import 'package:chat_firebase/src/pages/chat/widgets/grid_message_images_widget.dart';
 import 'package:chat_firebase/src/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class MessageWidget extends StatelessWidget {
   const MessageWidget.myMessage({
+    required this.content,
     required this.sendedAt,
+    this.imagesUrl,
     super.key,
   })  : _isMyMessage = true,
         userImage = null,
@@ -13,11 +16,15 @@ class MessageWidget extends StatelessWidget {
     required String this.userImage,
     required bool this.isOnline,
     required this.sendedAt,
+    required this.content,
+    this.imagesUrl,
     super.key,
   }) : _isMyMessage = false;
 
+  final List<String>? imagesUrl;
   final bool _isMyMessage;
   final String sendedAt;
+  final String content;
   final bool? isOnline;
   final String? userImage;
 
@@ -30,6 +37,8 @@ class MessageWidget extends StatelessWidget {
     if (_isMyMessage) return CrossAxisAlignment.end;
     return CrossAxisAlignment.start;
   }
+
+  bool get hasImage => imagesUrl != null && imagesUrl!.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +67,19 @@ class MessageWidget extends StatelessWidget {
                     maxWidth: constraints.maxWidth * 0.7,
                   ),
                   decoration: BoxDecoration(
-                    color: _isMyMessage ? theme.primaryColor: Colors.white,
+                    color: _isMyMessage ? theme.primaryColor : Colors.white,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(20),
                     ),
                   ),
-                  child: Text(
-                    'Teste ....111 222.222.33..33.1441.3kioipoipoi232',
-                    style: _isMyMessage
-                        ? theme.primaryTextTheme.bodyMedium
-                        : theme.textTheme.bodyMedium,
-                  ),
+                  child: hasImage
+                      ? GridMessageImagesWidget(imagesUrl: imagesUrl!)
+                      : Text(
+                          content,
+                          style: _isMyMessage
+                              ? theme.primaryTextTheme.bodyMedium
+                              : theme.textTheme.bodyMedium,
+                        ),
                 ),
                 const SizedBox(height: 8),
                 Text(
