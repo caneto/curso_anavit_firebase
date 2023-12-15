@@ -1,4 +1,5 @@
 import 'package:chat_firebase/src/pages/chat/widgets/chat_app_bar_widget.dart';
+import 'package:chat_firebase/src/pages/chat/widgets/chat_text_field_widget.dart';
 import 'package:chat_firebase/src/pages/chat/widgets/message_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,67 +14,84 @@ class ChatPage extends StatelessWidget {
       appBar: const ChatAppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: ListView(
-          children: const [
-            MessageWidget.myMessage(
-              sendedAt: '10:32',
-              content:
-                  'Texto de Teste um ................. ............. .................',
-            ),
-            MessageWidget.otherMessage(
-              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
-              isOnline: true,
-              sendedAt: '10:35',
-              content:
-                  'Texto de Teste dois......... ............. .............. .............',
-            ),
-            MessageWidget.myMessage(
-              imagesUrl: [
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
+        child: Stack(
+          children: [
+            ListView(
+              reverse: true,
+              children: const [
+                MessageWidget.myMessage(
+                  sendedAt: '10:32',
+                  content:
+                      'Texto de Teste um ................. ............. .................',
+                ),
+                MessageWidget.otherMessage(
+                  userImage:
+                      'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  isOnline: true,
+                  sendedAt: '10:35',
+                  content:
+                      'Texto de Teste dois......... ............. .............. .............',
+                ),
+                MessageWidget.myMessage(
+                  imagesUrl: [
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  ],
+                  sendedAt: '10:32',
+                  content:
+                      'Texto de Teste um ................. ............. .................',
+                ),
+                MessageWidget.otherMessage(
+                  imagesUrl: [
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  ],
+                  userImage:
+                      'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  isOnline: true,
+                  sendedAt: '10:35',
+                  content:
+                      'Texto de Teste dois......... ............. .............. .............',
+                ),
+                MessageWidget.myMessage(
+                  imagesUrl: [
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  ],
+                  sendedAt: '10:32',
+                  content:
+                      'Texto de Teste um ................. ............. .................',
+                ),
+                MessageWidget.otherMessage(
+                  imagesUrl: [
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                    'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  ],
+                  userImage:
+                      'https://avatars.githubusercontent.com/u/2157300?v=4',
+                  isOnline: true,
+                  sendedAt: '10:35',
+                  content:
+                      'Texto de Teste dois......... ............. .............. .............',
+                ),
               ],
-              sendedAt: '10:32',
-              content:
-                  'Texto de Teste um ................. ............. .................',
             ),
-            MessageWidget.otherMessage(
-              imagesUrl: [
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-              ],
-              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
-              isOnline: true,
-              sendedAt: '10:35',
-              content:
-                  'Texto de Teste dois......... ............. .............. .............',
+            Positioned(
+              bottom: 12,
+              left: 12,
+              right: 12,
+              child: ChatTextFieldWidget(
+                onSendMessage: (String content) {},
+                onAttach: () {},
+              ),
             ),
-            MessageWidget.myMessage(
-              imagesUrl: [
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-              ],
-              sendedAt: '10:32',
-              content:
-                  'Texto de Teste um ................. ............. .................',
-            ),
-            MessageWidget.otherMessage(
-              imagesUrl: [
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-                'https://avatars.githubusercontent.com/u/2157300?v=4',
-              ],
-              userImage: 'https://avatars.githubusercontent.com/u/2157300?v=4',
-              isOnline: true,
-              sendedAt: '10:35',
-              content:
-                  'Texto de Teste dois......... ............. .............. .............',
-            )
           ],
         ),
       ),
