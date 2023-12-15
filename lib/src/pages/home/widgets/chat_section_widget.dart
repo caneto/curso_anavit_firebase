@@ -33,7 +33,10 @@ class ChatSectionWidget extends StatelessWidget {
                   'https://avatars.githubusercontent.com/u/2157300?v=4',
               userName: 'Carlos Alberto $index',
               content: 'Content $index',
-              hour: '12:30 pm',
+              hour: '12:30 pm', 
+              onTap: () {  
+                Navigator.of(context).pushNamed('/chat');
+              },
             );
           },
         ),

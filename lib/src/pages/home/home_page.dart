@@ -12,9 +12,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.deepPurple.shade300,
+      backgroundColor: theme.primaryColor,
       body: SafeArea(
         bottom: false,
         child: Column(
