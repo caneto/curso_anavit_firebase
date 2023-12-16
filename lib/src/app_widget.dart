@@ -1,7 +1,7 @@
 import 'package:chat_firebase/src/core/shared/themes/app_theme.dart';
 import 'package:chat_firebase/src/pages/chat/chat_page.dart';
 import 'package:chat_firebase/src/pages/home/home_page.dart';
-import 'package:chat_firebase/src/pages/login_page.dart';
+import 'package:chat_firebase/src/modules/login/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
