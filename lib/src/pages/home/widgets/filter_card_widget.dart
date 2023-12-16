@@ -20,7 +20,7 @@ class FilterCardWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? colors?.secundary : colors?.background,
+        color: isSelected ? colors?.secundary : theme.colorScheme.onPrimary,
         borderRadius: const BorderRadius.all(Radius.circular(100)),
       ),
       child: Padding(

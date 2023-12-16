@@ -1,3 +1,4 @@
+import 'package:chat_firebase/src/core/shared/themes/app_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -9,6 +10,7 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = theme.extension<AppColorsExtension>();
 
     return AppBar(
       backgroundColor: Colors.blue,
@@ -25,8 +27,10 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               Container(
                 width: 8,
                 height: 8,
-                decoration: const BoxDecoration(
-                    color: Colors.green, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                  color: colors?.onLine,
+                  shape: BoxShape.circle,
+                ),
               ),
               const SizedBox(width: 8),
               Text(
@@ -45,6 +49,4 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-  
-
 }

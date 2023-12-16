@@ -1,3 +1,4 @@
+import 'package:chat_firebase/src/core/shared/themes/app_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class UserImageWidget extends StatelessWidget {
@@ -14,6 +15,9 @@ class UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppColorsExtension>();
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -27,11 +31,15 @@ class UserImageWidget extends StatelessWidget {
           bottom: -2,
           right: -2,
           child: Container(
-              decoration: BoxDecoration(
-                color: isOnline ? Colors.green : Colors.amber,
-                shape: BoxShape.circle,
-              ),
-              child: isOnline ? const Icon(Icons.check) : const Icon(Icons.add)),
+            decoration: BoxDecoration(
+              color: isOnline ? colors?.onLine : colors?.offLine,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              isOnline ? Icons.check : Icons.add,
+              color: theme.iconTheme.color,
+            ),
+          ),
         )
       ],
     );
