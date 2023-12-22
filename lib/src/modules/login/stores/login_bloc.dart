@@ -1,18 +1,29 @@
-import 'package:chat_firebase/src/modules/login/stores/events/login_event.dart';
+import 'package:chat_firebase/src/core/shared/failures/app_failure.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../repository/interfaces/i_login_repository.dart';
+import 'events/login_event.dart';
 import 'states/login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(LoginState.initState()) {
+  LoginBloc(this._repository) : super(LoginState.initState()) {
     on<SubmitFormLoginEvent>(_login);
   }
+
+  final ILoginRepository _repository;
 
   Future<void> _login(
     SubmitFormLoginEvent event,
     Emitter<LoginState> emit,
   ) async {
-    emit(LoadingLoginState());
-    
+    emit(const LoadingLoginState());
+
+    try {
+      final user = await _repository.login(event.email, event.password);
+
+      emit(AuthenticatedLoginState(user));
+    } on AppFailure catch (e) {
+      emit(FailureLoginState(e));
+    }
   }
 }

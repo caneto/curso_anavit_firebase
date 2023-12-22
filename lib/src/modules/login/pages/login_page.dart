@@ -1,7 +1,13 @@
+import 'package:chat_firebase/src/modules/login/stores/events/login_event.dart';
+import 'package:chat_firebase/src/modules/login/stores/login_bloc.dart';
+import 'package:chat_firebase/src/modules/login/stores/states/login_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.loginBloc});
+
+  final LoginBloc loginBloc;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -10,6 +16,26 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
+
+   void listenLogin(BuildContext context, LoginState state) {
+    if (state is AuthenticatedLoginState) {
+      Navigator.of(context).pushReplacementNamed('/');
+    } else if(state is FailureLoginState) {
+      final messenger = ScaffoldMessenger.of(context);
+      final snackBar = SnackBar(content: Text(state.failure.message));
+
+      messenger.showSnackBar(snackBar);
+    }
+  }
+
+  void submit() {
+    final event = SubmitFormLoginEvent(
+      email: emailEC.text,
+      password: passwordEC.text,
+    );
+
+    widget.loginBloc.add(event);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,19 +81,26 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 28),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/');
+                  BlocConsumer(
+                    bloc: widget.loginBloc,
+                    listener: listenLogin,
+                    builder: (context, state) {
+                      if(state is LoadingLoginState) {
+                        return const CircularProgressIndicator.adaptive();
+                      }
+                      return ElevatedButton(
+                        onPressed: submit,
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text('Login'),
+                        ),
+                      );
                     },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text('Login'),
-                    ),
                   ),
                 ],
               ),
