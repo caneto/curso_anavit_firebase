@@ -25,6 +25,8 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
+    super.initState();
+    
     _subscription = widget.userBloc.stream.listen((state) {
       final String route = switch (state) {
         LoggedOutUserState() => '/login/',
@@ -35,7 +37,6 @@ class _SplashPageState extends State<SplashPage> {
 
     });
     widget.userBloc.add(const LoadUserEvent());
-    super.initState();
   }
 
   @override

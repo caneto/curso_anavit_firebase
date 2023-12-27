@@ -30,7 +30,6 @@ class AuthService implements IAuthService {
   @override
   Future<void> logout() async {
     await Future.delayed(const Duration(seconds: 3));
-    
     _user = null;
   }
 
