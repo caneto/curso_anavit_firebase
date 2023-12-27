@@ -1,5 +1,6 @@
-import 'package:chat_firebase/src/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/user_image_widget.dart';
 
 class StatusCardWidgets extends StatelessWidget {
   const StatusCardWidgets({

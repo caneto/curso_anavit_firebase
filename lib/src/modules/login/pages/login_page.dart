@@ -1,8 +1,9 @@
-import 'package:chat_firebase/src/modules/login/stores/events/login_event.dart';
-import 'package:chat_firebase/src/modules/login/stores/login_bloc.dart';
-import 'package:chat_firebase/src/modules/login/stores/states/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../stores/events/login_event.dart';
+import '../stores/login_bloc.dart';
+import '../stores/states/login_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.loginBloc});

@@ -1,5 +1,5 @@
-import 'package:chat_firebase/src/core/shared/failures/app_failure.dart';
 
+import '../../../../core/shared/failures/app_failure.dart';
 import '../../models/user_auth_model.dart';
 import '../interfaces/i_login_repository.dart';
 

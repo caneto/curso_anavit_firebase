@@ -1,6 +1,6 @@
-import 'package:chat_firebase/src/modules/login/login_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'modules/login/login_module.dart';
 import 'pages/chat/chat_page.dart';
 import 'pages/home/home_page.dart';
 

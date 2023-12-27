@@ -1,10 +1,10 @@
 
-import 'package:chat_firebase/src/modules/login/repository/implementations/login_repository.dart';
-import 'package:chat_firebase/src/modules/login/repository/interfaces/i_login_repository.dart';
-import 'package:chat_firebase/src/modules/login/stores/login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'pages/login_page.dart';
+import 'repository/implementations/login_repository.dart';
+import 'repository/interfaces/i_login_repository.dart';
+import 'stores/login_bloc.dart';
 
 class LoginModule extends Module {
   @override

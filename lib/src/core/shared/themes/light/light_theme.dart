@@ -1,6 +1,7 @@
-import 'package:chat_firebase/src/core/shared/themes/app_colors_extension.dart';
-import 'package:chat_firebase/src/core/shared/themes/light/light_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../app_colors_extension.dart';
+import 'light_colors.dart';
 
 class LightTheme {
   static final theme = ThemeData(

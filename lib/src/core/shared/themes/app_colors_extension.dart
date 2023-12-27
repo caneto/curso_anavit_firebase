@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
-  final Color primary;
-  final Color secundary;
-  final Color background;
-  final Color otherMessageBackground;
-  final Color background70;
-  final Color black;
-  final Color onLine;
-  final Color offLine;
 
   AppColorsExtension({
     required this.primary,
@@ -19,6 +11,15 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.onLine,
     required this.offLine,
   }) : background70 = background.withOpacity(0.7);
+  
+  final Color primary;
+  final Color secundary;
+  final Color background;
+  final Color otherMessageBackground;
+  final Color background70;
+  final Color black;
+  final Color onLine;
+  final Color offLine;
 
   @override
   ThemeExtension<AppColorsExtension> lerp(

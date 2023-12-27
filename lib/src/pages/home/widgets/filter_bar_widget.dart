@@ -1,6 +1,7 @@
-import 'package:chat_firebase/src/pages/home/widgets/filter_card_widget.dart';
-import 'package:chat_firebase/src/pages/home/widgets/search_filter_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'filter_card_widget.dart';
+import 'search_filter_widget.dart';
 
 class FilterBarWidget extends StatelessWidget {
   const FilterBarWidget({super.key});

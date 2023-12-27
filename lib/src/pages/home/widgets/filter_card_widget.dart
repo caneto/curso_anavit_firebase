@@ -1,5 +1,6 @@
-import 'package:chat_firebase/src/core/shared/themes/app_colors_extension.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/shared/themes/app_colors_extension.dart';
 
 class FilterCardWidget extends StatelessWidget {
   const FilterCardWidget({

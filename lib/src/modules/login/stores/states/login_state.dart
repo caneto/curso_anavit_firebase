@@ -1,6 +1,5 @@
-
-import 'package:chat_firebase/src/core/shared/failures/app_failure.dart';
-import 'package:chat_firebase/src/modules/login/models/user_auth_model.dart';
+import '../../../../core/shared/failures/app_failure.dart';
+import '../../models/user_auth_model.dart';
 
 sealed class LoginState {
 
@@ -20,13 +19,13 @@ class LoadingLoginState extends LoginState {
 }
 
 class FailureLoginState extends LoginState {
-  final AppFailure failure;
   const FailureLoginState(this.failure);
+  final AppFailure failure;
 }
 
 
 class AuthenticatedLoginState extends LoginState {
-  final UserAuthModel user;
 
   AuthenticatedLoginState(this.user);
+  final UserAuthModel user;
 }

@@ -1,5 +1,6 @@
-import 'package:chat_firebase/src/pages/home/widgets/chat_card_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'chat_card_widget.dart';
 
 class ChatSectionWidget extends StatelessWidget {
   const ChatSectionWidget({

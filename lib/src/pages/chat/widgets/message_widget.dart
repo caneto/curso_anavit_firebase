@@ -1,6 +1,7 @@
-import 'package:chat_firebase/src/pages/chat/widgets/grid_message_images_widget.dart';
-import 'package:chat_firebase/src/widgets/user_image_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/user_image_widget.dart';
+import 'grid_message_images_widget.dart';
 
 class MessageWidget extends StatelessWidget {
   const MessageWidget.myMessage({
