@@ -1,12 +1,17 @@
 
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../core/core_module.dart';
 import 'pages/login_page.dart';
 import 'repository/implementations/login_repository.dart';
 import 'repository/interfaces/i_login_repository.dart';
 import 'stores/login_bloc.dart';
 
 class LoginModule extends Module {
+  
+  @override
+  List<Module> get imports => [CoreModule()];
+
   @override
   void binds(Injector i) {
     i.add<ILoginRepository>(LoginRepository.new);
