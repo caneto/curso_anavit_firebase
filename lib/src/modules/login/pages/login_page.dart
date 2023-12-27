@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../stores/events/login_event.dart';
-import '../stores/login_bloc.dart';
-import '../stores/states/login_state.dart';
+import '../blocs/events/login_event.dart';
+import '../blocs/login_bloc.dart';
+import '../blocs/states/login_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.loginBloc});
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
    void listenLogin(BuildContext context, LoginState state) {
     if (state is AuthenticatedLoginState) {
-      Navigator.of(context).pushReplacementNamed('/');
+      Navigator.of(context).pushReplacementNamed('/home');
     } else if(state is FailureLoginState) {
       final messenger = ScaffoldMessenger.of(context);
       final snackBar = SnackBar(content: Text(state.failure.message));

@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Modular.setInitialRoute('/login/');
+    Modular.setInitialRoute('/');
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

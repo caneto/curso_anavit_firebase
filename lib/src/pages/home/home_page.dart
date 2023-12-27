@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../core/user/blocs/events/user_event.dart';
+import '../../core/user/blocs/user_bloc.dart';
 import 'widgets/chat_section_widget.dart';
 import 'widgets/contacts_widget.dart';
 import 'widgets/filter_bar_widget.dart';
 import 'widgets/home_app_bar_widget.dart';
 
-void logout() {}
-
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+    required this.userBloc,
+  });
+
+  final UserBloc userBloc;
+  
+  void logout() {
+    userBloc.add(const LogoutUserEvent());
+    Modular.to.pushReplacementNamed('/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +31,8 @@ class HomePage extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: HomeAppBarWidget(
                 userName: 'Carlos',
                 unreadChatCount: 48,
