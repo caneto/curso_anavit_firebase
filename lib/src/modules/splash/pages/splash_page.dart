@@ -26,13 +26,13 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    
+
     _subscription = widget.userBloc.stream.listen((state) {
       final String route = switch (state) {
         LoggedOutUserState() => '/login/',
         LoggedUserState() => '/home',
       };
-      
+        
       Modular.to.pushReplacementNamed(route);
 
     });

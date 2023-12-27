@@ -18,7 +18,5 @@ class AppModule extends Module {
     r.module('/login', module: LoginModule());
     r.child('/home', child: (_) => HomePage(userBloc: Modular.get()));
     r.child('/chat', child: (_) => const ChatPage());
-    
-    super.routes(r);
   }
 }

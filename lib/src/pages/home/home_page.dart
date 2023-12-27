@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   final UserBloc userBloc;
   
   void logout() {
-    userBloc.add(const LogoutUserEvent());
+    userBloc.add(LogoutUserEvent());
     Modular.to.pushReplacementNamed('/');
   }
 

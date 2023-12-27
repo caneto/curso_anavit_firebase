@@ -8,5 +8,5 @@ class LoadUserEvent extends UserEvent {
 }
 
 class LogoutUserEvent extends UserEvent {
-  const LogoutUserEvent();
+  LogoutUserEvent();
 }

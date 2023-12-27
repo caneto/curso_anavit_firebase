@@ -16,12 +16,10 @@ class LoginModule extends Module {
   void binds(Injector i) {
     i.add<ILoginRepository>(LoginRepository.new);
     i.add(LoginBloc.new);
-    super.binds(i);
   }
+  
   @override
   void routes(RouteManager r) {
     r.child('/', child: (_) => LoginPage(loginBloc: Modular.get()));
-   
-    super.routes(r);
   }
 }
