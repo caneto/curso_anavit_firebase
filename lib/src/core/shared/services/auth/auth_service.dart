@@ -6,7 +6,7 @@ import 'i_auth_service.dart';
 class AuthService implements IAuthService {
   @override
   Future<UserAuthModel> getUser() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     
     if(_user == null) {
       throw UnauthenticatedFailure('Não autenticado');
@@ -16,7 +16,7 @@ class AuthService implements IAuthService {
 
   @override
   Future<String> login(String email, password) async {
-     await Future.delayed(const Duration(seconds: 3));
+     await Future.delayed(const Duration(seconds: 1));
     
     if (email == 'carlos@gmail.com') {
       _user = UserAuthModel(id: 'ID', email: email);
@@ -29,7 +29,7 @@ class AuthService implements IAuthService {
 
   @override
   Future<void> logout() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     _user = null;
   }
 

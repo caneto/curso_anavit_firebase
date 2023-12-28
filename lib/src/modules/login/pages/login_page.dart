@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
    void listenLogin(BuildContext context, LoginState state) {
     if (state is AuthenticatedLoginState) {
-      Navigator.of(context).pushReplacementNamed('/home');
+      Navigator.of(context).pushReplacementNamed('/');
     } else if(state is FailureLoginState) {
       final messenger = ScaffoldMessenger.of(context);
       final snackBar = SnackBar(content: Text(state.failure.message));
