@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/failures/app_failure.dart';
+import '../models/user_model.dart';
 import '../repository/interfaces/i_user_repository.dart';
 import 'events/user_event.dart';
 import 'states/user_state.dart';
@@ -12,6 +13,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   final IUserRepository _repository;
+
+  UserModel get user => (state as LoggedUserState).user;
 
   Future<void> _load(Emitter<UserState> emit) async {
     try {

@@ -30,11 +30,10 @@ class _SplashPageState extends State<SplashPage> {
     _subscription = widget.userBloc.stream.listen((state) {
       final String route = switch (state) {
         LoggedOutUserState() => '/login/',
-        LoggedUserState() => '/home',
+        LoggedUserState() => '/home/',
       };
-        
-      Modular.to.pushReplacementNamed(route);
 
+      Modular.to.pushReplacementNamed(route);
     });
     widget.userBloc.add(const LoadUserEvent());
   }

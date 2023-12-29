@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/user_image_widget.dart';
+import '../../../../core/shared/widgets/user_image_widget.dart';
+
 
 class ChatCardWidget extends StatelessWidget {
   const ChatCardWidget({

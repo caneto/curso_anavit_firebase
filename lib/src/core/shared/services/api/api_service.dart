@@ -11,7 +11,7 @@ class ApiService implements IApiService {
         'email': 'carlos@gmail.com',
         'first_name': 'Carlos',
         'last_name': 'Neto',
-        'image_url': '',
+        'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
         'status': 1,
         'contacts': [],
         'groups_pinned': [],

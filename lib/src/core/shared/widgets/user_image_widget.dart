@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/shared/themes/app_colors_extension.dart';
+import '../themes/app_colors_extension.dart';
 
 class UserImageWidget extends StatelessWidget {
   const UserImageWidget({

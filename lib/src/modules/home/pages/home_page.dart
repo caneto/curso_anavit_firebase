@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/user/blocs/events/user_event.dart';
-import '../../core/user/blocs/user_bloc.dart';
+import '../../../core/user/blocs/events/user_event.dart';
+import '../../../core/user/blocs/user_bloc.dart';
 import 'widgets/chat_section_widget.dart';
 import 'widgets/contacts_widget.dart';
 import 'widgets/filter_bar_widget.dart';
 import 'widgets/home_app_bar_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.userBloc,
   });
 
   final UserBloc userBloc;
-  
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   void logout() {
-    userBloc.add(LogoutUserEvent());
+    widget.userBloc.add(LogoutUserEvent());
     Modular.to.pushReplacementNamed('/');
   }
 
@@ -33,10 +39,15 @@ class HomePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: HomeAppBarWidget(
-                userName: 'Carlos',
-                unreadChatCount: 48,
-                onLogoutTap: logout,
+              child: BlocBuilder(
+                bloc: widget.userBloc,
+                builder: (_, __) {
+                  return HomeAppBarWidget(
+                    userName: widget.userBloc.user.firstName,
+                    unreadChatCount: 48,
+                    onLogoutTap: logout,
+                  );
+                },
               ),
             ),
             const Flexible(

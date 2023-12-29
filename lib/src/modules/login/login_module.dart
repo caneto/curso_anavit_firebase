@@ -1,4 +1,3 @@
-
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/core_module.dart';
@@ -17,7 +16,7 @@ class LoginModule extends Module {
     i.add<ILoginRepository>(LoginRepository.new);
     i.add(LoginBloc.new);
   }
-  
+
   @override
   void routes(RouteManager r) {
     r.child('/', child: (_) => LoginPage(loginBloc: Modular.get()));
