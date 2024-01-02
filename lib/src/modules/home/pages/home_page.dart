@@ -4,8 +4,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/user/blocs/events/user_event.dart';
 import '../../../core/user/blocs/user_bloc.dart';
+import '../blocs/contacts_bloc.dart';
+import '../blocs/events/contacts_event.dart';
 import 'widgets/chat_section_widget.dart';
-import 'widgets/contacts_widget.dart';
+import 'components/contacts_components.dart';
 import 'widgets/filter_bar_widget.dart';
 import 'widgets/home_app_bar_widget.dart';
 
@@ -13,15 +15,25 @@ class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
     required this.userBloc,
+    required this.contactsBloc,
   });
 
   final UserBloc userBloc;
+  final ContactsBloc contactsBloc;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.contactsBloc.add(LoadContactsEvent(widget.userBloc.user.contacts));
+  }
+  
   void logout() {
     widget.userBloc.add(LogoutUserEvent());
     Modular.to.pushReplacementNamed('/');
@@ -50,10 +62,10 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            const Flexible(
+            Flexible(
               child: Padding(
-                padding: EdgeInsets.only(left: 16, top: 8, bottom: 16),
-                child: ContactsWidget(),
+                padding: const EdgeInsets.only(left: 16, top: 8, bottom: 16),
+                child: ContactsComponent(contactsBloc: widget.contactsBloc,),
               ),
             ),
             Expanded(

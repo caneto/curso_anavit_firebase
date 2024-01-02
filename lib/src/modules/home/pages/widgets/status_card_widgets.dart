@@ -23,7 +23,7 @@ class StatusCardWidgets extends StatelessWidget {
     return Column(
       children: [
         UserImageWidget(
-          radius: size.width * .0885,
+          radius: size.width *.0885,
           imageUrl: userImage,
           isOnline: isOnline,
         ),

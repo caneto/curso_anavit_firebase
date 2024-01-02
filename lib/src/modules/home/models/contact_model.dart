@@ -1,4 +1,5 @@
-import '../../../core/user/blocs/states/user_state.dart';
+
+import '../../../core/user/models/user_status.dart';
 
 class ContactModel {
   const ContactModel({
@@ -9,9 +10,20 @@ class ContactModel {
     required this.status,
   });
 
+  factory ContactModel.fromMap(Map<String, dynamic> map) {
+    return ContactModel(
+      id: map['id'],
+      firstName: map['first_name'],
+      lastName: map['last_name'],
+      imageUrl: map['image_url'],
+      status: UserStatus.fromCode(map['status']),
+    );
+  }
+
   final String id;
   final String firstName;
   final String lastName;
   final String imageUrl;
-  final UserState status;
+  final UserStatus status;
+ 
 }

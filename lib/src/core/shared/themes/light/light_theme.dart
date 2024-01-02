@@ -50,7 +50,7 @@ class LightTheme {
         otherMessageBackground: Colors.white,
         black: LightColors.black,
         onLine: LightColors.onLineGreen,
-        offLine: LightColors.onLineGreen,
+        offLine: LightColors.offLineYellow,
       ),
     ],
   );
