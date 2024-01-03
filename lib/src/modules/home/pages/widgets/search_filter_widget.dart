@@ -5,10 +5,12 @@ class SearchFilterWidget extends StatefulWidget {
     super.key,
     required this.child,
     required this.onSearch,
+    required this.onClose,
   });
 
   final Widget child;
   final void Function(String searchText) onSearch;
+  final VoidCallback onClose;
 
   @override
   State<SearchFilterWidget> createState() => _SearchFilterWidgetState();
@@ -34,6 +36,7 @@ class _SearchFilterWidgetState extends State<SearchFilterWidget> {
   void clear() {
     textEC.clear();
     toggleShow();
+    widget.onClose();
 
     FocusScope.of(context).requestFocus();
   }

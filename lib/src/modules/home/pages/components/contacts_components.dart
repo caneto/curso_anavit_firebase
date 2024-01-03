@@ -35,28 +35,24 @@ class ContactsComponent extends StatelessWidget {
           builder: (_, ContactsState state) {
             switch (state) {
               case LoadingContactsState():
-                {
-                  return const Center(
-                      child: CircularProgressIndicator.adaptive());
-                }
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
               case DataContactsState():
-                {
-                  return Expanded(
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.contacts.length,
-                      separatorBuilder: (_, __) => const SizedBox(width: 16),
-                      itemBuilder: (_, index) {
-                        final contact = state.contacts.elementAt(index);
+                return Expanded(
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.contacts.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 16),
+                    itemBuilder: (_, index) {
+                      final contact = state.contacts.elementAt(index);
 
-                        return StatusCardWidgets(
-                            isOnline: contact.status.isOnline,
-                            userImage: contact.imageUrl,
-                            userName: contact.firstName);
-                      },
-                    ),
-                  );
-                }
+                      return StatusCardWidgets(
+                          isOnline: contact.status.isOnline,
+                          userImage: contact.imageUrl,
+                          userName: contact.firstName);
+                    },
+                  ),
+                );
             }
           },
         )
