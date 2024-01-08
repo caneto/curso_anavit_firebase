@@ -26,4 +26,5 @@ class ContactModel {
   final String imageUrl;
   final UserStatus status;
  
+  String get fullName => '$firstName $lastName';
 }

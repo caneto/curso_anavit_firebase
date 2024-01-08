@@ -22,9 +22,11 @@ class ApiService implements IApiService {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> filter(
+  Future<List<Map<String, dynamic>>> get(
     String key, {
-    required List<FilterParam> filters,
+    List<FilterParam> filters = const [],
+    OrderByParam? orderBy,
+    int? limit,
   }) async {
     if (key == 'contacts') {
       return [
@@ -45,5 +47,10 @@ class ApiService implements IApiService {
       ];
     }
     return [];
+  }
+  
+  @override
+  Future<int> count(String key, {List<FilterParam> filters = const []}) async {
+    return 2;
   }
 }

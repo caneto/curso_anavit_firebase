@@ -10,7 +10,7 @@ class ContactRepository implements IContactRepository {
   @override
   Future<List<ContactModel>> getContactsByIDs(Set<String> ids) async {
     final filterByID = FilterParam.byID('id', ids.toList());
-    final response = await _apiService.filter(
+    final response = await _apiService.get(
       'contacts',
       filters: [filterByID],
     );
