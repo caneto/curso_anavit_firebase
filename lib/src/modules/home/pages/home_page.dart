@@ -11,10 +11,12 @@ import '../blocs/contacts_bloc.dart';
 import '../blocs/events/chats_event.dart';
 import '../blocs/events/contacts_event.dart';
 import '../blocs/filter_chat_bloc.dart';
+import '../blocs/states/chats_state.dart';
 import '../blocs/states/contacts_state.dart';
+import 'components/chats_componnets.dart';
 import 'components/contacts_components.dart';
 import 'components/filter_bar_components.dart';
-import 'widgets/chat_section_widget.dart';
+import 'components/chat_section_component.dart';
 import 'widgets/home_app_bar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,11 +81,11 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: BlocBuilder(
-                bloc: widget.userBloc,
-                builder: (_, __) {
+                bloc: widget.chatsBloc,
+                builder: (_, ChatsState state) {
                   return HomeAppBarWidget(
                     userName: widget.userBloc.user.firstName,
-                    unreadChatCount: widget.chatsBloc.state.unreadChetsAmount,
+                    unreadChatCount: state.unreadChetsAmount,
                     onLogoutTap: logout,
                   );
                 },
@@ -115,20 +117,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 12),
                     Expanded(
-                      child: ListView(
-                        children: const [
-                          ChatSectionWidget(label: 'Pinned Message(2)'),
-                          SizedBox(height: 20),
-                          ChatSectionWidget(label: 'All Message(7)'),
-                        ],
+                      child: ChatsComponnets(
+                        filterBloc: widget.filterChatBloc,
+                        chatsBloc: widget.chatsBloc,
                       ),
                     ),
-                    //Expanded(
-                    //  child: Column(
-                    //    children: [
-                    //    ],
-                    //  )
-                    //)
                   ],
                 ),
               ),

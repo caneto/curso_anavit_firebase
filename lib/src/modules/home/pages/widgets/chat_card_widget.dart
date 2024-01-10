@@ -6,7 +6,7 @@ import '../../../../core/shared/widgets/user_image_widget.dart';
 class ChatCardWidget extends StatelessWidget {
   const ChatCardWidget({
     super.key,
-    required this.isOnline,
+    this.isOnline,
     required this.userImage,
     required this.userName,
     required this.content,
@@ -14,7 +14,7 @@ class ChatCardWidget extends StatelessWidget {
     required this.onTap,
   });
 
-  final bool isOnline;
+  final bool? isOnline;
   final VoidCallback onTap;
   final String userImage;
   final String userName;
@@ -33,7 +33,7 @@ class ChatCardWidget extends StatelessWidget {
           UserImageWidget(
             radius: size.width * 0.1,
             imageUrl: userImage,
-            isOnline: isOnline,
+            isOnline: isOnline!,
           ),
           const SizedBox(width: 8),
           Column(

@@ -31,8 +31,16 @@ class ChatsState {
       ...pinnedGroupChats,
       ...allGroupChats,];
 
-  int get unreadChetsAmount {
-    return allChats.where((e) => e.unreadMessagesCount > 0).length;
+  int get unreadChetsAmount => _getUnreadAmount(allChats);
+
+  int get unreadPinnedPrivateAmount => _getUnreadAmount(pinnedPrivateChats);
+  int get unreadAllPrivateAmount => _getUnreadAmount(allPrivateChats);
+
+  int get unreadPinnedGroupAmount => _getUnreadAmount(pinnedGroupChats);
+  int get unreadAllGroupAmount => _getUnreadAmount(allGroupChats);
+
+  int _getUnreadAmount(List<ChatModel> chats) {
+    return chats.where((e) => e.unreadMessagesCount > 0).length;
   }
 
   ChatsState copyWith({

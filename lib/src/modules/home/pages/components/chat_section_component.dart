@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'chat_card_widget.dart';
+import '../../models/chat_model.dart';
+import '../widgets/chat_card_widget.dart';
 
-class ChatSectionWidget extends StatelessWidget {
-  const ChatSectionWidget({
+class ChatSectionComponent extends StatelessWidget {
+  const ChatSectionComponent({
     super.key,
     required this.label,
+    required this.chats,
   });
 
   final String label;
+  final List<ChatModel> chats;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +26,20 @@ class ChatSectionWidget extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         ListView.separated(
-          itemCount: 3,
+          itemCount: chats.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (_, __) => const SizedBox(height: 16),
           itemBuilder: (_, index) {
+            final chat = chats.elementAt(index);
+
             return ChatCardWidget(
-              isOnline: index.isOdd,
-              userImage:
-                  'https://avatars.githubusercontent.com/u/2157300?v=4',
-              userName: 'Carlos Alberto $index',
-              content: 'Content $index',
-              hour: '12:30 pm', 
-              onTap: () {  
+              isOnline: chat.userStatus?.isOnline ?? true,
+              userImage: chat.imageUrl,
+              userName: chat.name,
+              content: chat.lastMessage,
+              hour: chat.messageDate.toString(),
+              onTap: () {
                 Navigator.of(context).pushNamed('/chat');
               },
             );
