@@ -38,7 +38,7 @@ class ChatRepository implements IChatRepository {
         'name': contact.fullName,
         'user_status': contact.status.code,
         'message_date': lastMessage['sended_at'],
-        'last_message': lastMessage['contact'],
+        'last_message': lastMessage['content'],
         'unread_messages_count': unreadMessagesCount,
       };
 
@@ -62,8 +62,6 @@ class ChatRepository implements IChatRepository {
         currentUserID: userID,
       );
 
-      // TODO: Conectar com Firebase
-
       final data = {
         'id': chatID,
         'contacts': chat['users_id'],
@@ -72,7 +70,7 @@ class ChatRepository implements IChatRepository {
         'name': chat['name'],
         'user_status': null,
         'message_date': lastMessage['sended_at'],
-        'last_message': lastMessage['contact'],
+        'last_message': lastMessage['content'],
         'unread_messages_count': unreadMessagesCount,
       };
 
@@ -86,12 +84,14 @@ class ChatRepository implements IChatRepository {
     required String currentUserID,
     required bool isPrivateChat,
   }) async {
-    final currrentUserFilter = FilterParam.contains('contacts', currentUserID);
+    final currrentUserFilter = FilterParam.contains('users_id', currentUserID);
     final chatType = isPrivateChat ? 'private' : 'group';
     final chatFilterType = FilterParam.equal('type', chatType);
 
-    final chatData = await _apiService
-        .get('chats', filters: [currrentUserFilter, chatFilterType]);
+    final chatData = await _apiService.get(
+      'chats',
+      filters: [currrentUserFilter, chatFilterType],
+    );
 
     return chatData;
   }
@@ -101,7 +101,7 @@ class ChatRepository implements IChatRepository {
     final lastMessages = await _apiService.get(
       'messages',
       filters: [currentChatFilter],
-      orderBy: const OrderByParam(key: 'sended_at'),
+      orderBy: OrderByParam(key: 'sended_at'),
       limit: 1,
     );
     final lastMessage = lastMessages.first;
@@ -110,8 +110,8 @@ class ChatRepository implements IChatRepository {
   }
 
   Future<int> _getUnreadePrivateMessagesAmount({
-    required chatID,
-    required otherUserID,
+    required String chatID,
+    required String otherUserID,
   }) async {
     final currentChatFilter = FilterParam.equal('chat_id', chatID);
     final unrealFilter = FilterParam.equal('viewed', false);
@@ -124,8 +124,10 @@ class ChatRepository implements IChatRepository {
     return unreadMessagesCount;
   }
 
-  Future<int> _getUnreadeGroupMessagesAmount(
-      {required chatID, required currentUserID}) async {
+  Future<int> _getUnreadeGroupMessagesAmount({
+    required String chatID,
+    required String currentUserID,
+  }) async {
     final currentChatFilter = FilterParam.equal('chat_id', chatID);
     final unrealFilter = FilterParam.contains('not_viewed_by', currentUserID);
     final unreadMessagesCount = await _apiService.count(

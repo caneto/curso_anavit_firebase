@@ -25,6 +25,16 @@ class ChatsState {
   final List<ChatModel> pinnedGroupChats;
   final List<ChatModel> allGroupChats;
 
+  List<ChatModel> get allChats => [
+      ...pinnedPrivateChats,
+      ...allPrivateChats,
+      ...pinnedGroupChats,
+      ...allGroupChats,];
+
+  int get unreadChetsAmount {
+    return allChats.where((e) => e.unreadMessagesCount > 0).length;
+  }
+
   ChatsState copyWith({
     List<ChatModel>? searchedChats,
     List<ChatModel>? pinnedPrivateChats,

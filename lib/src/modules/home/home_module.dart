@@ -2,10 +2,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/core_module.dart';
 import '../../core/user/user_module.dart';
+import 'blocs/chats_bloc.dart';
 import 'blocs/contacts_bloc.dart';
 import 'blocs/filter_chat_bloc.dart';
 import 'pages/home_page.dart';
+import 'repositories/implementations/chat_repository.dart';
 import 'repositories/implementations/contact_repository.dart';
+import 'repositories/interfaces/i_chat_repository.dart';
 import 'repositories/interfaces/i_contact_repository.dart';
 
 class HomeModule extends Module {
@@ -15,7 +18,9 @@ class HomeModule extends Module {
   @override
   void binds(Injector i) {
     i.addLazySingleton<IContactRepository>(ContactRepository.new);
+    i.addLazySingleton<IChatRepository>(ChatRepository.new);
     i.addLazySingleton(ContactsBloc.new);
+    i.addLazySingleton(ChatsBloc.new);
     i.addLazySingleton(FilterChatBloc.new);
   }
 
@@ -27,6 +32,7 @@ class HomeModule extends Module {
         userBloc: Modular.get(),
         contactsBloc: Modular.get(),
         filterChatBloc: Modular.get(),
+        chatsBloc: Modular.get(),
       ),
     );
   }

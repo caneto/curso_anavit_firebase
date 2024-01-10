@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/user/blocs/events/user_event.dart';
 import '../../../core/user/blocs/user_bloc.dart';
+import '../blocs/chats_bloc.dart';
 import '../blocs/contacts_bloc.dart';
+import '../blocs/events/chats_event.dart';
 import '../blocs/events/contacts_event.dart';
 import '../blocs/filter_chat_bloc.dart';
+import '../blocs/states/contacts_state.dart';
 import 'components/contacts_components.dart';
 import 'components/filter_bar_components.dart';
 import 'widgets/chat_section_widget.dart';
@@ -18,23 +23,42 @@ class HomePage extends StatefulWidget {
     required this.userBloc,
     required this.contactsBloc,
     required this.filterChatBloc,
+    required this.chatsBloc,
   });
 
   final UserBloc userBloc;
   final ContactsBloc contactsBloc;
   final FilterChatBloc filterChatBloc;
+  final ChatsBloc chatsBloc;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late final StreamSubscription contactSubscription;
 
   @override
   void initState() {
     super.initState();
 
-    widget.contactsBloc.add(LoadContactsEvent(widget.userBloc.user.contacts));
+    final user = widget.userBloc.user;
+
+    contactSubscription = widget.contactsBloc.stream.listen((state) {
+      if (state is DataContactsState) {
+        final contacts = state.contacts;
+        final event = GetChatsEvent(contacts: contacts, userID: user.id);
+        widget.chatsBloc.add(event);
+      }
+    });
+
+    widget.contactsBloc.add(LoadContactsEvent(user.contacts));
+  }
+
+  @override
+  void dispose() {
+    contactSubscription.cancel();
+    super.dispose();
   }
 
   void logout() {
@@ -59,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (_, __) {
                   return HomeAppBarWidget(
                     userName: widget.userBloc.user.firstName,
-                    unreadChatCount: 48,
+                    unreadChatCount: widget.chatsBloc.state.unreadChetsAmount,
                     onLogoutTap: logout,
                   );
                 },

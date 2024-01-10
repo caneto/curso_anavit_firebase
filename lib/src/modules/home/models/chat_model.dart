@@ -22,7 +22,7 @@ class ChatModel {
       imageUrl: map['image_url'],
       messageDate: DateTime.fromMillisecondsSinceEpoch(map['message_date']),
       lastMessage: map['last_message'],
-      unreadMessagesCount: map['unread_messages_count']?.toInt(),
+      unreadMessagesCount: map['unread_messages_count'],
       userStatus: map['user_status'] != null ? UserStatus.fromCode(map['user_status']) : null,
       chatStatus: ChatStatus.fromCode(map['chat_status']),
     );
@@ -37,7 +37,4 @@ class ChatModel {
   final int unreadMessagesCount;
   final UserStatus? userStatus;
   final ChatStatus chatStatus;
-
-
-
 }

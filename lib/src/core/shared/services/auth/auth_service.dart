@@ -19,7 +19,7 @@ class AuthService implements IAuthService {
      await Future.delayed(const Duration(seconds: 1));
     
     if (email == 'carlos@gmail.com') {
-      _user = UserAuthModel(id: 'ID', email: email);
+      _user = UserAuthModel(id: 'USER-ID', email: email);
     } else {
       throw LoginFailure('Credenciais invalidos');
     }

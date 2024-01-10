@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'i_api_service.dart';
 import 'params/filter_param.dart';
 
@@ -31,14 +33,14 @@ class ApiService implements IApiService {
     if (key == 'contacts') {
       return [
         {
-          'id': 'ID',
+          'id': 'CONTACT-1',
           'first_name': 'Contato1',
           'last_name': '1',
           'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
           'status': 1,
         },
         {
-          'id': 'ID',
+          'id': 'CONTACT-2',
           'first_name': 'Contato2',
           'last_name': '2',
           'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
@@ -46,11 +48,41 @@ class ApiService implements IApiService {
         }
       ];
     }
+
+    if (key == 'chats') {
+      return [
+        {
+          'id': 'CHAT-ID1',
+          'name': 'Group 01',
+          'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
+          'users_id': ['CONTACT-1', 'USER-ID'],
+          'chat_status': 1,
+        },
+        {
+          'id': 'CHAT-ID1',
+          'name': 'Group 02',
+          'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
+          'users_id': ['CONTACT-1', 'USER-ID'],
+          'chat_status': 2,
+        }
+      ];
+    }
+
+    if (key == 'messages') {
+      return [
+        {
+          'id': 'CHAT-ID1',
+          'content': 'Last Message',
+          'sended_at': DateTime.now().millisecondsSinceEpoch,
+        }
+      ];
+    }
+
     return [];
   }
-  
+
   @override
   Future<int> count(String key, {List<FilterParam> filters = const []}) async {
-    return 2;
+    return Random().nextInt(5);
   }
 }

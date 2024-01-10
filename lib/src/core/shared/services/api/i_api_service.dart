@@ -15,7 +15,7 @@ abstract class IApiService {
 }
 
 class OrderByParam {
-  const OrderByParam({
+  OrderByParam({
     required this.key,
     this.descending = true,
   });

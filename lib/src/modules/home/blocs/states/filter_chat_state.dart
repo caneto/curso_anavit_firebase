@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 import '../../../../core/shared/enums/chat_type.dart';
 
 class FilterChatState {

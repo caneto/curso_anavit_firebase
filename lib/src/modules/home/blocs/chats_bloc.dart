@@ -18,14 +18,9 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
     Emitter<ChatsState> emit,
   ) async {
     final searchedText = event.searchedText.toLowerCase();
-    final allChats = [
-      ...state.pinnedPrivateChats,
-      ...state.allPrivateChats,
-      ...state.pinnedGroupChats,
-      ...state.allGroupChats,
-    ];
+   
 
-    final searchedChats = allChats.where((e) {
+    final searchedChats = state.allChats.where((e) {
       return e.name.toLowerCase().contains(searchedText);
     });
 
