@@ -83,6 +83,6 @@ class ApiService implements IApiService {
 
   @override
   Future<int> count(String key, {List<FilterParam> filters = const []}) async {
-    return Random().nextInt(2);
+    return Random().nextInt(5);
   }
 }

@@ -114,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     FilterBarComponent(
                       filterChatBloc: widget.filterChatBloc,
+                      chatsBloc: widget.chatsBloc,
                     ),
                     const SizedBox(height: 12),
                     Expanded(

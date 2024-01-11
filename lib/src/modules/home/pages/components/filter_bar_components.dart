@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/shared/enums/chat_type.dart';
+import '../../blocs/chats_bloc.dart';
 import '../../blocs/events/filter_chat_event.dart';
 import '../../blocs/filter_chat_bloc.dart';
 import '../../blocs/states/filter_chat_state.dart';
@@ -12,9 +13,11 @@ class FilterBarComponent extends StatelessWidget {
   const FilterBarComponent({
     super.key,
     required this.filterChatBloc,
+    required this.chatsBloc,
   });
 
   final FilterChatBloc filterChatBloc;
+  final ChatsBloc chatsBloc;
 
   void changeFilter(ChatType type) {
     filterChatBloc.add(ChangeTypeFilterChatEvent(type));
@@ -41,14 +44,14 @@ class FilterBarComponent extends StatelessWidget {
             children: [
               FilterCardWidget(
                 label: 'Privated Message',
-                notificationAmount: 32,
+                notificationAmount: chatsBloc.state.unreadPrivateAmount,
                 isSelected: state.isFilteredByPrivete,
                 onTap: () => changeFilter(ChatType.private),
               ),
               const SizedBox(height: 12),
               FilterCardWidget(
                 label: 'Gruop',
-                notificationAmount: 3,
+                notificationAmount: chatsBloc.state.unreadGroupAmount,
                 isSelected: state.isFilteredByGroup,
                 onTap: () => changeFilter(ChatType.group),
               ),

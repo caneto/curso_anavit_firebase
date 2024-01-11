@@ -26,10 +26,11 @@ class ChatsState {
   final List<ChatModel> allGroupChats;
 
   List<ChatModel> get allChats => [
-      ...pinnedPrivateChats,
-      ...allPrivateChats,
-      ...pinnedGroupChats,
-      ...allGroupChats,];
+        ...pinnedPrivateChats,
+        ...allPrivateChats,
+        ...pinnedGroupChats,
+        ...allGroupChats,
+      ];
 
   int get unreadChetsAmount => _getUnreadAmount(allChats);
 
@@ -38,6 +39,16 @@ class ChatsState {
 
   int get unreadPinnedGroupAmount => _getUnreadAmount(pinnedGroupChats);
   int get unreadAllGroupAmount => _getUnreadAmount(allGroupChats);
+
+  int get unreadPrivateAmount => _getUnreadAmount([
+        ...allPrivateChats,
+        ...pinnedPrivateChats,
+      ]);
+
+  int get unreadGroupAmount => _getUnreadAmount([
+        ...allGroupChats,
+        ...pinnedGroupChats,
+      ]);
 
   int _getUnreadAmount(List<ChatModel> chats) {
     return chats.where((e) => e.unreadMessagesCount > 0).length;

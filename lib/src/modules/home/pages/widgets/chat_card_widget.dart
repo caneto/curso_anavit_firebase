@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/shared/widgets/user_image_widget.dart';
 
-
 class ChatCardWidget extends StatelessWidget {
   const ChatCardWidget({
     super.key,
@@ -10,16 +9,18 @@ class ChatCardWidget extends StatelessWidget {
     required this.userImage,
     required this.userName,
     required this.content,
-    required this.hour, 
+    required this.hour,
     required this.onTap,
+    required this.notificationAmount,
   });
 
   final bool? isOnline;
-  final VoidCallback onTap;
   final String userImage;
   final String userName;
   final String content;
   final String hour;
+  final int notificationAmount;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +37,45 @@ class ChatCardWidget extends StatelessWidget {
             isOnline: isOnline!,
           ),
           const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                userName,
-                style: theme.textTheme.titleLarge,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                content,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  userName,
+                  style: theme.textTheme.titleLarge,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  content,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 8),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(hour),
               const SizedBox(height: 8),
-              Icon(
-                Icons.check,
-                color: theme.primaryColor,
-              ),
+              if (notificationAmount > 0) ...{
+                CircleAvatar(
+                  radius: 10,
+                  backgroundColor: theme.badgeTheme.backgroundColor,
+                  child: FittedBox(
+                    child: Text(
+                      notificationAmount.toString(),
+                      style: theme.primaryTextTheme.labelSmall,
+                    ),
+                  ),
+                ),
+              } else
+                Icon(
+                  Icons.check,
+                  color: theme.primaryColor,
+                ),
             ],
           )
         ],
