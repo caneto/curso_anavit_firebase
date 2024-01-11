@@ -39,11 +39,12 @@ class HomeAppBarWidget extends StatelessWidget {
           ),
         ),
         IconButton(
-            onPressed: onLogoutTap,
-            icon: Icon(
-              Icons.logout,
-              color: theme.primaryIconTheme.color,
-            ))
+          onPressed: onLogoutTap,
+          icon: Icon(
+            Icons.logout,
+            color: theme.primaryIconTheme.color,
+          ),
+        )
       ],
     );
   }

@@ -54,6 +54,14 @@ class _HomePageState extends State<HomePage> {
       }
     });
 
+    widget.filterChatBloc.stream.listen((state) {
+      final searchedText = state.searchedText;
+
+      if(searchedText != null && searchedText.isNotEmpty) {
+        widget.chatsBloc.add(SearchByTextChatsEvent(searchedText));
+      }
+    });
+
     widget.contactsBloc.add(LoadContactsEvent(user.contacts));
   }
 

@@ -22,22 +22,39 @@ class ChatsComponnets extends StatelessWidget {
       builder: (_, FilterChatState filterState) {
         return BlocBuilder(
           bloc: chatsBloc,
-          builder: (_, ChatsState chatState) {
+          builder: (_, ChatsState chatsState) {
+            if (filterState.isFilteredByText) {
+              return ListView(
+                children: [
+                  if (chatsState.searchedChats.isNotEmpty) ...{
+                    const Center(
+                      child: Text('Nenhuma conversa encontrada'),
+                    )
+                  } else ...{
+                    ChatSectionComponent(
+                      label: 'Searched',
+                      chats: chatsState.searchedChats,
+                    ),
+                  }
+                ],
+              );
+            }
+
             List<ChatModel> pinnedChats = [];
             List<ChatModel> allChats = [];
             int pinnedAmount = 0;
             int allAmount = 0;
 
             if (filterState.isFilteredByPrivete) {
-              pinnedAmount = chatState.unreadPinnedPrivateAmount;
-              allAmount = chatState.unreadAllPrivateAmount;
-              pinnedChats = chatState.pinnedPrivateChats;
-              allChats = chatState.allPrivateChats;
+              pinnedAmount = chatsState.unreadPinnedPrivateAmount;
+              allAmount = chatsState.unreadAllPrivateAmount;
+              pinnedChats = chatsState.pinnedPrivateChats;
+              allChats = chatsState.allPrivateChats;
             } else if (filterState.isFilteredByGroup) {
-              pinnedAmount = chatState.unreadPinnedGroupAmount;
-              allAmount = chatState.unreadAllGroupAmount;
-              pinnedChats = chatState.pinnedGroupChats;
-              allChats = chatState.allGroupChats;
+              pinnedAmount = chatsState.unreadPinnedGroupAmount;
+              allAmount = chatsState.unreadAllGroupAmount;
+              pinnedChats = chatsState.pinnedGroupChats;
+              allChats = chatsState.allGroupChats;
             }
             return ListView(
               children: [

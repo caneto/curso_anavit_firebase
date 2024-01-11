@@ -21,6 +21,25 @@ class _SearchFilterWidgetState extends State<SearchFilterWidget> {
   final focusNode = FocusNode();
   bool showTextField = false;
 
+  @override
+  void initState() {
+    super.initState();
+    textEC.addListener(searchListner);
+  }
+
+  @override
+  void dispose() {
+    textEC.removeListener(searchListner);
+    textEC.dispose();
+    super.dispose();
+  }
+
+  void searchListner() {
+    if(textEC.text.isEmpty) return;
+
+    widget.onSearch(textEC.text);
+  }
+
   void toggleShow() {
     if (showTextField && textEC.text.isNotEmpty) {
       return widget.onSearch(textEC.text);
@@ -62,6 +81,7 @@ class _SearchFilterWidgetState extends State<SearchFilterWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 hintText: ' Pesquisar...',
+                border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(8),
                 suffixIcon: InkWell(
                   onTap: clear,

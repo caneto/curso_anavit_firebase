@@ -15,6 +15,7 @@ class FilterChatState {
 
   bool get isFilteredByGroup => chatType == ChatType.group && searchedText == null;
   bool get isFilteredByPrivete => chatType == ChatType.private && searchedText == null;
+  bool get isFilteredByText => searchedText != null && searchedText!.isNotEmpty;
     
   FilterChatState clearSearch() {
     return FilterChatState(
