@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/chat_app_bar_widget.dart';
@@ -5,10 +6,18 @@ import 'widgets/chat_text_field_widget.dart';
 import 'widgets/message_widget.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  const ChatPage({
+    super.key,
+    required this.chatID,
+  });
+
+  final String chatID;
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print(chatID);
+    }
 
     return Scaffold(
       appBar: const ChatAppBarWidget(),

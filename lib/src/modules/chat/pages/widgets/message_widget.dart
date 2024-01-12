@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/shared/widgets/user_image_widget.dart';
+import '../../../../core/shared/widgets/user_image_widget.dart';
 import 'grid_message_images_widget.dart';
 
 class MessageWidget extends StatelessWidget {

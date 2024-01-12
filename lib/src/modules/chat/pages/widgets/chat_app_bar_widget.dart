@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/shared/themes/app_colors_extension.dart';
+import '../../../../core/shared/themes/app_colors_extension.dart';
 
 class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const ChatAppBarWidget({super.key});

@@ -43,7 +43,7 @@ class ChatSectionComponent extends StatelessWidget {
               hour: dateFormat.format(chat.messageDate),
               notificationAmount: chat.unreadMessagesCount,
               onTap: () {
-                Navigator.of(context).pushNamed('/chat');
+                Navigator.of(context).pushNamed('/chat/${chat.id}');
               },
             );
           },
