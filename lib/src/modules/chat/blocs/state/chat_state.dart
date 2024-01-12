@@ -1,7 +1,7 @@
 
 import '../../models/chat_model.dart';
 
-class ChatState {
+sealed class ChatState {
   const ChatState();
 
   factory ChatState.initialState() {

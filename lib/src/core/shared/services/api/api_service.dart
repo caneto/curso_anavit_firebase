@@ -59,7 +59,7 @@ class ApiService implements IApiService {
           'chat_status': 1,
         },
         {
-          'id': 'CHAT-ID1',
+          'id': 'CHAT-ID2',
           'name': 'Group 02',
           'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
           'users_id': ['CONTACT-1', 'USER-ID'],

@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/shared/themes/app_colors_extension.dart';
 
 class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const ChatAppBarWidget({super.key});
+  const ChatAppBarWidget({
+    super.key,
+    required this.name,
+    this.isOnline,
+  });
+
+  final String name;
+  final bool? isOnline;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -14,32 +21,34 @@ class ChatAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     final colors = theme.extension<AppColorsExtension>();
 
     return AppBar(
-      backgroundColor: Colors.blue,
+      backgroundColor: colors?.primary,
       title: Column(
         children: [
           Text(
-            'Carlos Alberto',
+            name,
             style: theme.primaryTextTheme.titleLarge,
           ),
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: colors?.onLine,
-                  shape: BoxShape.circle,
+          if (isOnline != null) ...{
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: colors?.onLine,
+                    shape: BoxShape.circle,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'OnLine',
-                style: theme.primaryTextTheme.bodyMedium,
-              ),
-            ],
-          )
+                const SizedBox(width: 8),
+                Text(
+                  'OnLine',
+                  style: theme.primaryTextTheme.bodyMedium,
+                ),
+              ],
+            )
+          }
         ],
       ),
       actions: [
