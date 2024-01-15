@@ -1,5 +1,5 @@
 
-import '../../../core/shared/enums/user_status.dart';
+import '../../shared/enums/user_status.dart';
 
 class ContactModel {
   const ContactModel({

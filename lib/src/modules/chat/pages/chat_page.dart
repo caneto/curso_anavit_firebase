@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/contacts/blocs/contacts_bloc.dart';
 import '../blocs/chat_bloc.dart';
 import '../blocs/events/chat_event.dart';
 import '../blocs/state/chat_state.dart';
@@ -14,8 +15,10 @@ class ChatPage extends StatefulWidget {
     super.key,
     required this.chatID,
     required this.chatBloc,
+    required this.contactsBloc,
   });
 
+  final ContactsBloc contactsBloc;
   final ChatBloc chatBloc;
   final String chatID;
 
@@ -28,7 +31,10 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     super.initState();
 
-    widget.chatBloc.add(LoadByIDChatEvent(widget.chatID));
+    widget.chatBloc.add(LoadChatEvent(
+      chatID: widget.chatID,
+      contacts: widget.contactsBloc.contacts,
+    ));
   }
 
   @override

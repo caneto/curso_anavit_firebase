@@ -1,5 +1,6 @@
-
+import '../../../../core/contacts/models/contact_model.dart';
 import '../../models/chat_model.dart';
+import '../../models/messages/message_model.dart';
 
 sealed class ChatState {
   const ChatState();
@@ -18,7 +19,13 @@ class LoadingChatStatge extends ChatState {
 }
 
 class DataChatState extends ChatState {
-  const DataChatState(this.chat);
+  const DataChatState({
+    required this.chat,
+    required this.messages,
+    required this.contacts,
+  });
 
   final ChatModel chat;
+  final List<MessageModel> messages;
+  final Set<ContactModel> contacts;
 }

@@ -1,5 +1,5 @@
 import '../../../../core/shared/enums/chat_status.dart';
-import '../../models/contact_model.dart';
+import '../../../../core/contacts/models/contact_model.dart';
 
 class ChatsEvent {
   const ChatsEvent();

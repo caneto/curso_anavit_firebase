@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/contacts_bloc.dart';
-import '../../blocs/states/contacts_state.dart';
+import '../../../../core/contacts/blocs/contacts_bloc.dart';
+import '../../../../core/contacts/blocs/state/contacts_state.dart';
 import '../widgets/status_card_widgets.dart';
 
 class ContactsComponent extends StatelessWidget {

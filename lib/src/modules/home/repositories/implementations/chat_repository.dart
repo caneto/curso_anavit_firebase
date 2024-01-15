@@ -1,7 +1,7 @@
 import '../../../../core/shared/services/api/i_api_service.dart';
 import '../../../../core/shared/services/api/params/filter_param.dart';
 import '../../models/chat_model.dart';
-import '../../models/contact_model.dart';
+import '../../../../core/contacts/models/contact_model.dart';
 import '../interfaces/i_chat_repository.dart';
 
 class ChatRepository implements IChatRepository {

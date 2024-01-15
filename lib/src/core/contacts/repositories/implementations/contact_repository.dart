@@ -1,5 +1,5 @@
-import '../../../../core/shared/services/api/i_api_service.dart';
-import '../../../../core/shared/services/api/params/filter_param.dart';
+import '../../../shared/services/api/i_api_service.dart';
+import '../../../shared/services/api/params/filter_param.dart';
 import '../../models/contact_model.dart';
 import '../interfaces/i_contact_repository.dart';
 
