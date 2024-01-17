@@ -9,7 +9,6 @@ import 'repository/implementations/chat_repository.dart';
 import 'repository/interfaces/i_chat_repository.dart';
 
 class ChatModule extends Module {
-
   @override
   List<Module> get imports => [CoreModule(), UserModule(), ContactsModule()];
 
@@ -27,6 +26,7 @@ class ChatModule extends Module {
         chatID: r.args.params['id'],
         chatBloc: Modular.get(),
         contactsBloc: Modular.get(),
+        userBloc: Modular.get(),
       ),
     );
   }

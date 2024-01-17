@@ -10,8 +10,7 @@ class ChatRepository implements IChatRepository {
       return ChatModel(
         id: id,
         name: 'Privado',
-        usersID: {''},
-        imageUrl: '',
+        usersID: {'CONTACT-1'},
         userStatus: UserStatus.online,
         type: ChatType.private,
       );
@@ -19,8 +18,7 @@ class ChatRepository implements IChatRepository {
     return ChatModel(
         id: id,
         name: 'Group',
-        usersID: {''},
-        imageUrl: '',
+        usersID: {'CONTACT-1', 'CONTACT-2'},
         type: ChatType.group,
       );
   }

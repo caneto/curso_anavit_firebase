@@ -28,4 +28,12 @@ class DataChatState extends ChatState {
   final ChatModel chat;
   final List<MessageModel> messages;
   final Set<ContactModel> contacts;
+  
+  bool isMyMessage(MessageModel message, String userID) {
+    return message.senderID == userID;
+  }
+
+  ContactModel getContact(String senderID) {
+    return contacts.firstWhere((e) =>  e.id == senderID);
+  }
 }

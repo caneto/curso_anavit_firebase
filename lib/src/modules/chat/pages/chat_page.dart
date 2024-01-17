@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/contacts/blocs/contacts_bloc.dart';
+import '../../../core/user/blocs/user_bloc.dart';
 import '../blocs/chat_bloc.dart';
 import '../blocs/events/chat_event.dart';
 import '../blocs/state/chat_state.dart';
@@ -16,10 +17,12 @@ class ChatPage extends StatefulWidget {
     required this.chatID,
     required this.chatBloc,
     required this.contactsBloc,
+    required this.userBloc,
   });
 
   final ContactsBloc contactsBloc;
   final ChatBloc chatBloc;
+  final UserBloc userBloc;
   final String chatID;
 
   @override
@@ -61,72 +64,33 @@ class _ChatPageState extends State<ChatPage> {
                 padding: const EdgeInsets.all(16),
                 child: Stack(
                   children: [
-                    ListView(
+                    ListView.builder(
                       reverse: true,
-                      children: const [
-                        MessageWidget.myMessage(
-                          sendedAt: '10:32',
-                          content:
-                              'Texto de Teste um ................. ............. .................',
-                        ),
-                        MessageWidget.otherMessage(
-                          userImage:
-                              'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          isOnline: true,
-                          sendedAt: '10:35',
-                          content:
-                              'Texto de Teste dois......... ............. .............. .............',
-                        ),
-                        MessageWidget.myMessage(
-                          imagesUrl: [
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          ],
-                          sendedAt: '10:32',
-                          content:
-                              'Texto de Teste um ................. ............. .................',
-                        ),
-                        MessageWidget.otherMessage(
-                          imagesUrl: [
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          ],
-                          userImage:
-                              'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          isOnline: true,
-                          sendedAt: '10:35',
-                          content:
-                              'Texto de Teste dois......... ............. .............. .............',
-                        ),
-                        MessageWidget.myMessage(
-                          imagesUrl: [
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          ],
-                          sendedAt: '10:32',
-                          content:
-                              'Texto de Teste um ................. ............. .................',
-                        ),
-                        MessageWidget.otherMessage(
-                          imagesUrl: [
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                            'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          ],
-                          userImage:
-                              'https://avatars.githubusercontent.com/u/2157300?v=4',
-                          isOnline: true,
-                          sendedAt: '10:35',
-                          content:
-                              'Texto de Teste dois......... ............. .............. .............',
-                        ),
-                      ],
+                      itemCount: state.messages.length,
+                      itemBuilder: (_, index) {
+                        final message = state.messages.elementAt(index);
+
+                        final userID = widget.userBloc.user.id;
+                        final sendedAt = message.sendedAt.toString();
+
+                        final isMyMessage = state.isMyMessage(message, userID);
+
+                        if (isMyMessage) {
+                          MessageWidget.myMessage(
+                            sendedAt: sendedAt,
+                            content: message.contact,
+                            imagesUrl: message.imageUrl.toList(),
+                          );
+                        }
+
+                        final contact = state.getContact(message.senderID);
+                        return MessageWidget.otherMessage(
+                          userImage: contact.imageUrl,
+                          isOnline: contact.status.isOnline,
+                          sendedAt: sendedAt,
+                          content: message.contact,
+                        );
+                      },
                     ),
                     Positioned(
                       bottom: 12,
