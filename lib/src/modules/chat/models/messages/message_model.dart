@@ -1,5 +1,7 @@
+import 'group_message_model.dart';
+import 'private_message_model.dart';
 
-class MessageModel {
+abstract class MessageModel {
   const MessageModel({
     required this.id,
     required this.chatID,
@@ -8,6 +10,14 @@ class MessageModel {
     required this.sendedAt,
     required this.senderID,
   });
+
+  factory MessageModel.fromMap(Map<String, dynamic> data) {
+    if (data.containsKey('viewed')) {
+      return PrivateMessageModel.fromMap(data);
+    } else {
+      return GroupMessageModel.fromMap(data);
+    }
+  }
 
   final String id;
   final String chatID;

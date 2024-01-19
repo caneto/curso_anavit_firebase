@@ -9,4 +9,15 @@ class GroupMessageModel extends MessageModel {
     required super.sendedAt,
     required super.senderID,
   });
+
+  factory GroupMessageModel.fromMap(Map<String, dynamic> data) {
+    return GroupMessageModel(
+      id: data['id'],
+      chatID: data['chat_id'],
+      contact: data['content'],
+      imageUrl: Set<String>.from(data['images_url']),
+      sendedAt: DateTime.fromMillisecondsSinceEpoch(data['sender_at']),
+      senderID: data['sender'],
+    );
+  }
 }
