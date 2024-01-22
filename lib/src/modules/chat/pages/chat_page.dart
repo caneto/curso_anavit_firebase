@@ -64,33 +64,36 @@ class _ChatPageState extends State<ChatPage> {
                 padding: const EdgeInsets.all(16),
                 child: Stack(
                   children: [
-                    ListView.builder(
-                      reverse: true,
-                      itemCount: state.messages.length,
-                      itemBuilder: (_, index) {
-                        final message = state.messages.elementAt(index);
-
-                        final userID = widget.userBloc.user.id;
-                        final sendedAt = message.sendedAt.toString();
-
-                        final isMyMessage = state.isMyMessage(message, userID);
-
-                        if (isMyMessage) {
-                          MessageWidget.myMessage(
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 60),
+                      child: ListView.builder(
+                        reverse: true,
+                        itemCount: state.messages.length,
+                        itemBuilder: (_, index) {
+                          final message = state.messages.elementAt(index);
+                      
+                          final userID = widget.userBloc.user.id;
+                          final sendedAt = message.sendedAt.toString();
+                      
+                          final isMyMessage = state.isMyMessage(message, userID);
+                      
+                          if (isMyMessage) {
+                            return MessageWidget.myMessage(
+                              sendedAt: sendedAt,
+                              content: message.contact,
+                              imagesUrl: message.imageUrl.toList(),
+                            );
+                          }
+                      
+                          final contact = state.getContact(message.senderID);
+                          return MessageWidget.otherMessage(
+                            userImage: contact.imageUrl,
+                            isOnline: contact.status.isOnline,
                             sendedAt: sendedAt,
                             content: message.contact,
-                            imagesUrl: message.imageUrl.toList(),
                           );
-                        }
-
-                        final contact = state.getContact(message.senderID);
-                        return MessageWidget.otherMessage(
-                          userImage: contact.imageUrl,
-                          isOnline: contact.status.isOnline,
-                          sendedAt: sendedAt,
-                          content: message.contact,
-                        );
-                      },
+                        },
+                      ),
                     ),
                     Positioned(
                       bottom: 12,

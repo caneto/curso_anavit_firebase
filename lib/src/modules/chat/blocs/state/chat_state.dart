@@ -19,11 +19,12 @@ class LoadingChatStatge extends ChatState {
 }
 
 class DataChatState extends ChatState {
-  const DataChatState({
+    DataChatState({
     required this.chat,
     required this.messages,
-    required this.contacts,
+    required this.contacts
   });
+
 
   final ChatModel chat;
   final List<MessageModel> messages;
@@ -35,5 +36,16 @@ class DataChatState extends ChatState {
 
   ContactModel getContact(String senderID) {
     return contacts.firstWhere((e) =>  e.id == senderID);
+  }
+  DataChatState copyWith({
+    ChatModel? chat,
+    List<MessageModel>? messages,
+    Set<ContactModel>? contacts    
+  }) {
+    return DataChatState(
+          chat: chat ?? this.chat,
+      messages: messages ?? this.messages,
+      contacts: contacts ?? this.contacts
+    );
   }
 }

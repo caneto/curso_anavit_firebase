@@ -20,13 +20,14 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(const LoadingChatStatge());
 
     final chat = await _chatRepository.getByID(event.chatID);
-    final messates = _messageRepository.getMessages(chat.id);
-
+    final messagesStream = _messageRepository.getMessages(chat.id);
+    final messages = await messagesStream.first;
+    
     final contacts = event.contacts.where((e) => chat.usersID.contains(e.id));
 
     emit(DataChatState(
       chat: chat,
-      messages: [],
+      messages: messages,
       contacts: contacts.toSet(),
     ));
   }

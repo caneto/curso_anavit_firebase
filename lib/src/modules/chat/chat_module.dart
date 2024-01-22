@@ -6,7 +6,9 @@ import '../../core/user/user_module.dart';
 import 'blocs/chat_bloc.dart';
 import 'pages/chat_page.dart';
 import 'repository/implementations/chat_repository.dart';
+import 'repository/implementations/message_repository.dart';
 import 'repository/interfaces/i_chat_repository.dart';
+import 'repository/interfaces/i_message_repository.dart';
 
 class ChatModule extends Module {
   @override
@@ -14,6 +16,7 @@ class ChatModule extends Module {
 
   @override
   void binds(Injector i) {
+    i.addLazySingleton<IMessageRepository>(MessageRepository.new);
     i.addLazySingleton<IChatRepository>(ChatRepository.new);
     i.addLazySingleton(ChatBloc.new);
   }
