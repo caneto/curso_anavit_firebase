@@ -10,9 +10,22 @@ class ChatModel {
     this.userStatus,
   });
 
+  factory ChatModel.fromMap(Map<String, dynamic> map) {
+    final type = ChatType.values.byName(map['type']);
+
+    return ChatModel(
+      id: map['id'],
+      name: map['name'],
+      usersID: Set<String>.from(map['users_id']),
+      userStatus: type == ChatType.private ? UserStatus.online: null,
+      type: type,
+    );
+  }
+
   final String id;
   final String name;
   final Set<String> usersID;
-   final UserStatus? userStatus;
+  final UserStatus? userStatus;
   final ChatType type;
+
 }

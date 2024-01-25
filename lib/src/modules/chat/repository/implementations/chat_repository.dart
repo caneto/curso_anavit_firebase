@@ -1,12 +1,22 @@
-import '../../../../core/shared/enums/chat_type.dart';
-import '../../../../core/shared/enums/user_status.dart';
+import '../../../../core/shared/services/api/i_api_service.dart';
 import '../../models/chat_model.dart';
 import '../interfaces/i_chat_repository.dart';
 
 class ChatRepository implements IChatRepository {
+  
+  const ChatRepository(this._apiService);
+
+  final IApiService _apiService;
+
   @override
   Future<ChatModel> getByID(String id) async {
-    if (id == 'CHAT-ID1') {
+    final response = await _apiService.getByID('chats', id);
+    
+    final chat = ChatModel.fromMap(response);
+
+    return chat;    
+
+    /* if (id == 'CHAT-ID1') {
       return ChatModel(
         id: id,
         name: 'Privado',
@@ -20,6 +30,6 @@ class ChatRepository implements IChatRepository {
         name: 'Group',
         usersID: {'CONTACT-1', 'CONTACT-2'},
         type: ChatType.group,
-      );
-  }
+      );*/
+  } 
 }

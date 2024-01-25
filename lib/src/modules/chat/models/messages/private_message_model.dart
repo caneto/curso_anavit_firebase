@@ -17,7 +17,7 @@ class PrivateMessageModel extends MessageModel {
       chatID: data['chat_id'],
       contact: data['content'],
       imageUrl: Set<String>.from(data['images_url']),
-      sendedAt: DateTime.fromMillisecondsSinceEpoch(data['sender_at']),
+      sendedAt: DateTime.fromMillisecondsSinceEpoch(data['sended_at']),
       senderID: data['sender'],
     );
   }

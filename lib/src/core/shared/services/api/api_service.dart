@@ -20,6 +20,16 @@ class ApiService implements IApiService {
       };
     }
 
+    if (key == 'chats') {
+      return {
+        'id': 'CHAT-ID1',
+        'name': 'Group 01',
+        'image_url': 'https://avatars.githubusercontent.com/u/2157300?v=4',
+        'users_id': ['CONTACT-1', 'USER-ID'],
+        'type': 'private',
+      };
+    }
+
     return {};
   }
 
