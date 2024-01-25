@@ -1,7 +1,13 @@
+import '../../../../core/shared/services/api/i_api_service.dart';
 import '../../models/messages/message_model.dart';
 import '../interfaces/i_message_repository.dart';
 
 class MessageRepository implements IMessageRepository {
+
+  MessageRepository(this._apiService);
+   
+  final IApiService _apiService;
+  
   @override
   Stream<List<MessageModel>> getMessages(String chatID) {
     final data = [
