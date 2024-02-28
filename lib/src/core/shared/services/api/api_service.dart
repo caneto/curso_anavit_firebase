@@ -95,4 +95,34 @@ class ApiService implements IApiService {
   Future<int> count(String key, {List<FilterParam> filters = const []}) async {
     return Random().nextInt(5);
   }
+
+  @override
+  Stream<List<Map<String, dynamic>>> snapshot(
+    String key, {
+    List<FilterParam>? filters,
+    OrderByParam? orderBy,
+    int? limit,
+  }) {
+    final data = [
+      <String, dynamic>{
+        'id': 'MESSAGE-ID',
+        'chat_id': 'CHAT-ID',
+        'content': 'Contato mensagem',
+        'images_url': [],
+        'sended_at': DateTime.now().millisecondsSinceEpoch,
+        'sender': 'CONTACT-1',
+        'viewed': true,
+      },
+      <String, dynamic>{
+        'id': 'MESSAGE-ID',
+        'chat_id': 'CHAT-ID',
+        'content': 'Contato mensagem',
+        'images_url': [],
+        'sended_at': DateTime.now().millisecondsSinceEpoch,
+        'sender': 'USER-ID',
+        'viewed': true,
+      },
+    ];
+    return Stream.value(data);
+  }
 }

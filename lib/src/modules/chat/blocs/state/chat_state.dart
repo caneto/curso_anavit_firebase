@@ -37,6 +37,7 @@ class DataChatState extends ChatState {
   ContactModel getContact(String senderID) {
     return contacts.firstWhere((e) =>  e.id == senderID);
   }
+  
   DataChatState copyWith({
     ChatModel? chat,
     List<MessageModel>? messages,

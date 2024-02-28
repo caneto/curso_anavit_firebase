@@ -8,6 +8,12 @@ abstract class IApiService {
     OrderByParam orderBy,
     int? limit,
   });
+  Stream<List<Map<String, dynamic>>> snapshot(
+    String key, {
+    List<FilterParam>? filters,
+    OrderByParam? orderBy,
+    int? limit,
+  });
   Future<int> count(
     String key, {
     List<FilterParam> filters,
